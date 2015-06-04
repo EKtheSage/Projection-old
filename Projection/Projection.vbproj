@@ -44,7 +44,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ExcelDna.Integration">
-      <HintPath>..\..\..\..\..\Downloads\ExcelDna-0.32\Distribution\ExcelDna.Integration.dll</HintPath>
+      <HintPath>..\packages\Excel-DNA.Lib.0.32.0\lib\ExcelDna.Integration.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -66,6 +66,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChainLadder.vb" />
     <Compile Include="Class1.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -92,6 +93,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Projection-AddIn.dna">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -101,14 +105,16 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <None Include="MyProject.dna">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="MyProject.xll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "c:\users\u41035\documents\visual studio 2013\Projects\Projection\packages\Excel-DNA.0.32.0\tools\ExcelDna.xll" "$(TargetDir)Projection-AddIn.xll*" /C /Y
+xcopy "$(TargetDir)Projection-AddIn.dna*" "$(TargetDir)Projection-AddIn64.dna*" /C /Y
+xcopy "c:\users\u41035\documents\visual studio 2013\Projects\Projection\packages\Excel-DNA.0.32.0\tools\ExcelDna64.xll" "$(TargetDir)Projection-AddIn64.xll*" /C /Y
+"c:\users\u41035\documents\visual studio 2013\Projects\Projection\packages\Excel-DNA.0.32.0\tools\ExcelDnaPack.exe" "$(TargetDir)Projection-AddIn.dna" /Y
+"c:\users\u41035\documents\visual studio 2013\Projects\Projection\packages\Excel-DNA.0.32.0\tools\ExcelDnaPack.exe" "$(TargetDir)Projection-AddIn64.dna" /Y</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
