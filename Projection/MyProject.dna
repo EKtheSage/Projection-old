@@ -1,0 +1,3 @@
+﻿<DnaLibrary Language="VB" RuntimeVersion="v4.0">
+<ExternalLibrary Path="MyProject.dll" />
+</DnaLibrary>
